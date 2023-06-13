@@ -8,6 +8,6 @@ export interface UserRepository {
   update(user: User): Promise<void>;
   findById(id: Id): Promise<User | null>;
   findByName(name: Name): Promise<User | null>;
-  findAll(): Promise<User[] | []>;
+  findAll(): Promise<User[]>;
   delete(id: Id): Promise<void>;
 }

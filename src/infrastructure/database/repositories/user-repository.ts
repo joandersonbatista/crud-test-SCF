@@ -18,7 +18,7 @@ export class UserRepositoryFake implements UserRepository {
     return this.fromModelToEntity(user);
   }
 
-  public async findAll(): Promise<User[] | []> {
+  public async findAll(): Promise<User[]> {
     return storage.map((user) => this.fromModelToEntity(user));
   }
 
@@ -52,6 +52,7 @@ export class UserRepositoryFake implements UserRepository {
       name: user.getName().value,
       job: user.getJob(),
       admin: user.isAdmin(),
+      read: user.getReadManyTimes(),
       created_at: user.getCreatedAt(),
       updated_at: user.getUpdatedAt(),
     };
@@ -63,6 +64,7 @@ export class UserRepositoryFake implements UserRepository {
       new Name(user.name),
       user.job,
       user.admin,
+      user.read,
       user.created_at,
       user.updated_at,
     );

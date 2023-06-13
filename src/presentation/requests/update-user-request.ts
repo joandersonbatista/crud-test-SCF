@@ -7,7 +7,6 @@ type UpdateUserRequest = RequestModel<
     name?: string;
     job?: Job;
   },
-  {},
   { id: string }
 >;
 

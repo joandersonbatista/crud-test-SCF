@@ -3,6 +3,7 @@ import { DeleteUserApplication } from '~application/delete-user.application';
 import { GetUserApplication } from '~application/get-user.application';
 import { GetUsersApplication } from '~application/get-users.application';
 import { UpdateUserApplication } from '~application/update-user.application';
+import { UserLoginApplication } from '~application/user-login.application';
 
 import { UserController } from '~controller/user-controller';
 
@@ -28,6 +29,10 @@ export default () => {
   const updateUserApplication = new UpdateUserApplication(userRepository);
   const getUserApplication = new GetUserApplication(userRepository);
   const getUsersApplication = new GetUsersApplication(userRepository);
+  const userLoginApplication = new UserLoginApplication(
+    userRepository,
+    tokenJwt,
+  );
   // responses
   const createdResponse = new CreatedResponse();
   const updatedResponse = new UpdatedResponse();
@@ -39,6 +44,7 @@ export default () => {
     getUserApplication,
     getUsersApplication,
     deleteUserApplication,
+    userLoginApplication,
     createdResponse,
     updatedResponse,
     successResponse,

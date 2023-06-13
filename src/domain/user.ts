@@ -9,6 +9,7 @@ export class User {
     private name: Name,
     private job: Job,
     private readonly admin: boolean,
+    private read: number,
     private readonly createdAt: Date,
     private updatedAt?: Date,
   ) {}
@@ -27,6 +28,14 @@ export class User {
 
   public getJob(): Job {
     return this.job;
+  }
+
+  public getReadManyTimes(): number {
+    return this.read;
+  }
+
+  public addReading(): void {
+    this.read += 1;
   }
 
   public changeName(name: Name): void {

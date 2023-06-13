@@ -1,26 +1,27 @@
 import { GetUserOutputDTO } from '~dto/get-user-output-dto';
-import { NameInputDTO } from '~dto/name-input-dto';
+import { IdInputDTO } from '~dto/user-id-input-dto';
 
 import { UserRepository } from '~repository/user-repository';
 
 import { NotFoundError } from '~error/not-found-error';
+import { UnauthorizedError } from '~error/unauthorized-error';
 
-export class GetUserApplication {
+export class CheckUserAuthenticationApplication {
   constructor(private readonly userRepository: UserRepository) {}
 
-  async execute(input: NameInputDTO): Promise<GetUserOutputDTO> {
-    const user = await this.userRepository.findByName(input.name);
+  async execute(input: IdInputDTO): Promise<GetUserOutputDTO> {
+    const user = await this.userRepository.findById(input.id);
 
     if (!user) {
       throw new NotFoundError(
         'user_not_found',
-        `user with name ${input.name.value} does not exists.`,
+        `user with id ${input.id.value} does not exists.`,
       );
     }
 
-    user.addReading();
-
-    await this.userRepository.update(user);
+    if (!user.isAdmin()) {
+      throw new UnauthorizedError(`unauthorized_user`, 'unauthorized user');
+    }
 
     return new GetUserOutputDTO(
       user.getId().value,

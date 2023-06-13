@@ -14,6 +14,7 @@ export class GetUsersApplication {
           user.getId().value,
           user.getName().value,
           user.getJob(),
+          user.getReadManyTimes(),
           user.isAdmin(),
           user.getCreatedAt(),
           user.getUpdatedAt(),

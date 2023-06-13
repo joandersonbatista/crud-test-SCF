@@ -3,6 +3,7 @@ import { User } from '~entity/user';
 import { IdGeneratorProtocol } from '~domain-protocol/id-generator-protocol';
 
 import { CreateUserInputDTO } from '~dto/create-user-input-dto';
+import { GetUserOutputDTO } from '~dto/get-user-output-dto';
 
 import { UserRepository } from '~repository/user-repository';
 
@@ -14,7 +15,7 @@ export class CreateUserApplication {
     private readonly idGenerator: IdGeneratorProtocol,
   ) {}
 
-  async execute(input: CreateUserInputDTO): Promise<void> {
+  async execute(input: CreateUserInputDTO): Promise<GetUserOutputDTO> {
     const user = await this.userRepository.findByName(input.name);
 
     if (user) {
@@ -29,9 +30,20 @@ export class CreateUserApplication {
       input.name,
       input.job,
       input.admin,
+      0,
       new Date(),
     );
 
     await this.userRepository.create(newUser);
+
+    return new GetUserOutputDTO(
+      newUser.getId().value,
+      newUser.getName().value,
+      newUser.getJob(),
+      newUser.getReadManyTimes(),
+      newUser.isAdmin(),
+      newUser.getCreatedAt(),
+      newUser.getUpdatedAt(),
+    );
   }
 }
