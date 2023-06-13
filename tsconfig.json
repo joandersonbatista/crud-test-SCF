@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "commonjs",
+    "target": "es2020",
+    "removeComments": true,
+    "noEmitOnError": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "rootDir": "src",
+    "baseUrl": "./",
+    "paths": {
+      "~error/*": ["./src/domain/errors/*"],
+      "~domain-protocol/*": ["./src/domain/protocols/*"],
+      "~value-object/*": ["./src/domain/value-objects/*"],
+      "~entity/*": ["./src/domain/*"],
+      "~application/*": ["./src/application/*"],
+      "~dto/*": ["./src/application/DTOs/*"],
+      "~repository/*": ["src/application/repositories/*"],
+      "~response/*": ["./src/presentation/responses/*"],
+      "~request/*": ["./src/presentation/requests/*"],
+      "~controller/*": ["./src/presentation/*"],
+      "~presentation-interface/*": ["./src/presentation/interfaces/*"],
+      "~infrastructure-interface/*": [
+        "src/infrastructure/database/interfaces/*"
+      ],
+      "~factory/*": ["./src/infrastructure/factory/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.test.ts"]
+}

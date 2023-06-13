@@ -1,0 +1,37 @@
+{
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll": true
+  },
+  "code-runner.executorMap": {
+    "typescript": "npx ts-node --files"
+  },
+  "material-icon-theme.folders.associations": {
+    "entities": "class",
+    "useCases": "Job",
+    "repositorys": "mappings",
+    "Implementation": "Lib",
+    "providers": "Project",
+    "integration": "Connection",
+    "unitary": "Guard",
+    "conversations": "",
+    "presentation": "Layout",
+    "infrastructure": "Vm",
+    "domain": "Other",
+    "protocols": "interface",
+    "use-cases": "Job",
+    "application": "App"
+  },
+  "material-icon-theme.files.associations": {
+    "server.ts": "Drawio",
+    "*.application.ts": "Contributing",
+    "auth-middleware.ts": "Lock"
+  }
+}
